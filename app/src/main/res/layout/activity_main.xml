@@ -105,28 +105,11 @@
                     android:textAllCaps="false"
                     android:textSize="15sp"
                     app:cornerRadius="20dp"
-                    app:layout_constraintBottom_toTopOf="@+id/btn_register"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/passBox" />
 
-                <Button
-                    android:id="@+id/btn_register"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#878787"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="Create an Account"
-                    android:textAllCaps="false"
-                    android:textSize="15sp"
-                    app:cornerRadius="20dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_login" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
