@@ -1,3 +1,16 @@
 <resources>
+
     <string name="app_name">SchoolApp</string>
+
+<string-array name="Class">
+    <item>Select Class</item>
+    <item>1st Class</item>
+    <item>2nd Class</item>
+    <item>3rd Class</item>
+    <item>4th Class</item>
+    <item>5th Class</item>
+    <item>6th Class</item>
+    <item>7th Class</item>
+    <item>8th Class</item>
+</string-array>
 </resources>
