@@ -29,7 +29,6 @@
         android:breakStrategy="simple"
         android:text="add student"
         android:textAlignment="center"
-        android:textColor="#000000"
         android:textSize="12sp" />
 
     <ImageView
