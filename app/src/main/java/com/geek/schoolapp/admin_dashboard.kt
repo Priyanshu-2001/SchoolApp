@@ -1,7 +1,9 @@
 package com.geek.schoolapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.geek.schoolapp.adapter.dashBoard_adapter
 import com.geek.schoolapp.databinding.ActivityAdminDashboardBinding
@@ -16,8 +18,14 @@ class admin_dashboard : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_admin_dashboard)
 
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_admin_dashboard)
         binding.rcv.adapter = adapter
+
+        binding.logout.setOnClickListener{
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finishAffinity()
+        }
     }
 }

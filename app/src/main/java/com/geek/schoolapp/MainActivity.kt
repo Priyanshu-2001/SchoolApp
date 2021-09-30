@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val intent = Intent(this,admin_dashboard::class.java)
             startActivity(intent)
+            finishAffinity()
         }
     }
 }

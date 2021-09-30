@@ -37,28 +37,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Admin Dashboard"
-            android:textSize="30dp"
+            android:text="Students List"
             android:textColor="@color/browser_actions_bg_grey"
+            android:textSize="30dp"
             android:textStyle="bold"
-            android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv"
+            android:id="@+id/rcv_stud"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="60dp"
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:spanCount="2"
-            tools:listitem="@layout/single_dashborad_rcv" />
+            tools:listitem="@layout/single_stud_rcv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
