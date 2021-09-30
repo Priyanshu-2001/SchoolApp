@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.geek.schoolapp.R
 import com.geek.schoolapp.StudentProfile
 
-class dashBoard_adapter(val data : List<String>) : RecyclerView.Adapter<dashBoard_adapter.dashBoard_viewHolder>() {
+class dashBoard_adapter(val data : List<String> , val imageData : List<Int>) : RecyclerView.Adapter<dashBoard_adapter.dashBoard_viewHolder>() {
 
     class dashBoard_viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val  txtView : TextView = itemView.findViewById(R.id.textView)
@@ -36,6 +36,7 @@ class dashBoard_adapter(val data : List<String>) : RecyclerView.Adapter<dashBoar
 
     override fun onBindViewHolder(holder: dashBoard_viewHolder, position: Int) {
         holder.txtView.text = data[position]
+        holder.image.setImageResource(imageData[position])
     }
 
     override fun getItemCount(): Int {

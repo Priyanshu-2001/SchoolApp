@@ -10,7 +10,9 @@ class admin_dashboard : AppCompatActivity() {
 
     lateinit var binding : ActivityAdminDashboardBinding
     val dashBoardList : ArrayList<String> = arrayListOf("Add Student", "Delete Student" , "Edit Student" , "View Student")
-    val adapter = dashBoard_adapter(dashBoardList)
+    val imageList: ArrayList<Int> = arrayListOf(R.drawable.add_stud,R.drawable.delete_stud,R.drawable.edit_stud,R.drawable.view_stud)
+    val adapter = dashBoard_adapter(dashBoardList,imageList)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
