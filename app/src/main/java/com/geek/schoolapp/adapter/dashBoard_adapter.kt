@@ -9,10 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.geek.schoolapp.ClassDialog
 import com.geek.schoolapp.R
 import com.geek.schoolapp.StudentProfile
 
 class dashBoard_adapter(val data : List<String> , val imageData : List<Int>) : RecyclerView.Adapter<dashBoard_adapter.dashBoard_viewHolder>() {
+
+
 
     class dashBoard_viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val  txtView : TextView = itemView.findViewById(R.id.textView)
@@ -24,9 +27,14 @@ class dashBoard_adapter(val data : List<String> , val imageData : List<Int>) : R
                 val intent = Intent(it.context,StudentProfile::class.java)
                 intent.putExtra("tag" , txtView.text)
                 Log.e("DashBoard_Adapter", ": ${txtView.text}" )
-                it.context.startActivity(intent)
+                if(txtView.text == "View Student")
+                    ClassDialog().showCustomDialog(it.context)
+                else
+                    it.context.startActivity(intent)
             }
         }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): dashBoard_viewHolder {
@@ -42,4 +50,5 @@ class dashBoard_adapter(val data : List<String> , val imageData : List<Int>) : R
     override fun getItemCount(): Int {
         return data.size
     }
+
 }

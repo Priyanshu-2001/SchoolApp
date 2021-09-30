@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Admin Dashoard"
+            android:text="Admin Dashboard"
             android:textSize="30dp"
             android:textColor="@color/browser_actions_bg_grey"
             android:textStyle="bold"
