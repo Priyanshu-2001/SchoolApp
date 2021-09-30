@@ -38,6 +38,7 @@
             android:padding="10dp"
             android:text="Admin Dashoard"
             android:textSize="30dp"
+            android:textColor="@color/browser_actions_bg_grey"
             android:textStyle="bold"
             android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,15 +48,16 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="60dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/single_dashborad_rcv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:spanCount="2" />
+            app:spanCount="2"
+            tools:listitem="@layout/single_dashborad_rcv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
