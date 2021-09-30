@@ -4,13 +4,13 @@
 
 <string-array name="Class">
     <item>Select Class</item>
-    <item>1st</item>
-    <item>2nd</item>
-    <item>3rd</item>
-    <item>4th</item>
-    <item>5th</item>
-    <item>6th</item>
-    <item>7th</item>
-    <item>8th</item>
+    <item>1st Class</item>
+    <item>2nd Class</item>
+    <item>3rd Class</item>
+    <item>4th Class</item>
+    <item>5th Class</item>
+    <item>6th Class</item>
+    <item>7th Class</item>
+    <item>8th Class</item>
 </string-array>
 </resources>
