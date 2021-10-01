@@ -23,7 +23,7 @@
             android:id="@+id/stud_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             android:paddingStart="20dp"
             android:text="Student Name"
             android:textSize="25dp"
