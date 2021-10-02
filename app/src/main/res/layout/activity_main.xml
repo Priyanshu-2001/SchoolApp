@@ -12,7 +12,20 @@
         android:layout_height="match_parent"
         android:background="#736767">
 
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="#FF0000"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scrollView2" />
+
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:isScrollContainer="true"
@@ -56,20 +69,20 @@
                             android:text="LOGIN"
                             android:textSize="40sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/emailBox"
+                            app:layout_constraintBottom_toTopOf="@+id/userName"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/emailBox" />
+                            app:layout_constraintTop_toTopOf="@+id/userName" />
 
                         <EditText
-                            android:id="@+id/emailBox"
+                            android:id="@+id/userName"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
                             android:background="@drawable/textfield_email"
                             android:drawableEnd="@android:drawable/sym_action_email"
                             android:ems="10"
                             android:fontFamily="sans-serif"
-                            android:hint="Email"
-                            android:inputType="textEmailAddress"
+                            android:hint="Username"
+                            android:inputType="textPersonName"
                             android:padding="10dp"
                             android:textColor="#777777"
                             android:textColorHint="#555555"
@@ -89,7 +102,7 @@
                             app:hintEnabled="false"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/emailBox"
+                            app:layout_constraintTop_toBottomOf="@+id/userName"
                             app:passwordToggleEnabled="true"
                             app:passwordToggleTint="#BCBCBC">
 

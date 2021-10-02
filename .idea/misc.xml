@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SchoolApp2/app/src/main/res/drawable/gradient_btn_red.xml" value="0.18385416666666668" />
+        <entry key="..\:/SchoolApp2/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/SchoolApp2/app/src/main/res/layout/add_student.xml" value="0.2" />
         <entry key="..\:/Users/Rishabh Raj Dhiman/Desktop/AndroidProjects/SchoolApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/Rishabh Raj Dhiman/Desktop/AndroidProjects/SchoolApp/app/src/main/res/drawable-v24/textfield_email.xml" value="0.2526041666666667" />
