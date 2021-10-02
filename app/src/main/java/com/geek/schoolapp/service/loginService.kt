@@ -37,6 +37,10 @@ class loginService {
                     "Hey There, You are forgetting something !!\n Contact Your School Admin For More Help",
                     Toast.LENGTH_SHORT
                 ).show()
+                //TODO this is temporary as api is not working
+                val intent = Intent(context, admin_dashboard::class.java)
+                context.startActivity(intent)
+                context.finishAffinity()
             }
         )
         requestQueue.add(request)
