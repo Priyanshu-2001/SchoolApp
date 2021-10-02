@@ -1,17 +1,12 @@
 package com.geek.schoolapp
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
+import com.geek.schoolapp.dataModel.studentData
 import com.geek.schoolapp.databinding.AddStudentBinding
-import com.geek.schoolapp.databinding.ViewDialogBinding
+import com.geek.schoolapp.service.addStudentService
 
 class StudentProfile : AppCompatActivity() {
     lateinit var binding: AddStudentBinding
@@ -24,6 +19,21 @@ class StudentProfile : AppCompatActivity() {
         if (intent.extras != null) {
             binding.tvTitle.text = (intent.extras!!.get("tag")).toString()
            whichText = (intent.extras!!.get("tag")).toString()
+        }
+            if(whichText == "Add Student"){
+                addStudentConfig()
+            }
+    }
+
+    private fun addStudentConfig() {
+        binding.userNameBox.visibility = View.VISIBLE
+        binding.passwordBox.visibility = View.VISIBLE
+        val data = studentData(binding.nameField.text.toString() , binding.rollfield.text.toString() ,"class" ,binding.regField.text.toString() ,binding.fnameField.text.toString())
+        data.passWord = binding.password.text.toString()
+        data.userName = binding.username.text.toString()
+        val service = addStudentService()
+        binding.btnSave.setOnClickListener {
+            service.addStudent(data,this)
         }
     }
 }
