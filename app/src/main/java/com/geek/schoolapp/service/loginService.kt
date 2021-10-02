@@ -38,7 +38,6 @@ class loginService {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
         )
         requestQueue.add(request)
     }

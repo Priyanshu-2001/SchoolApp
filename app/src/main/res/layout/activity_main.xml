@@ -148,6 +148,7 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:text="Create an Account"
+                            android:visibility="gone"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="15sp"
