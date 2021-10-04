@@ -3,12 +3,14 @@ package com.geek.schoolapp.service
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.geek.schoolapp.AppSharedPrefs
 import com.geek.schoolapp.admin_dashboard
 import org.json.JSONObject
 
@@ -19,12 +21,12 @@ class loginService {
         val obj = JSONObject()
         obj.put("username", userName)
         obj.put("password", pass)
-
         val URL = "https://schoolapp1121.herokuapp.com/api/login"
         val request = JsonObjectRequest(
             Request.Method.POST, URL, obj,
             {
                 progressbar.visibility = View.GONE
+                AppSharedPrefs().LoginPrefs(context,userName,pass)
                 Toast.makeText(context, "Welcome...", Toast.LENGTH_SHORT).show()
                 val intent = Intent(context, admin_dashboard::class.java)
                 context.startActivity(intent)

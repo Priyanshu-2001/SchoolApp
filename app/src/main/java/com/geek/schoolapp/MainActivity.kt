@@ -1,5 +1,7 @@
 package com.geek.schoolapp
 
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -15,9 +17,17 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         val service = loginService()
         val progressbar = binding.progressCircular
+        val sharedPrefs = getSharedPreferences("loginPrefs", MODE_PRIVATE)
+
+        if(sharedPrefs.contains("username") && sharedPrefs.contains("pass")){
+            val intent = Intent(this, admin_dashboard::class.java)
+            startActivity(intent)
+            finishAffinity()
+        }
+
         binding.btnLogin.setOnClickListener {
             progressbar.visibility = View.VISIBLE
-            if ((binding.userName.text.toString() != "") && (binding.passField.text.toString()) != "" )
+           if ((binding.userName.text.toString() != "") && (binding.passField.text.toString() != "") )
             service.login(binding.userName.text.toString() , binding.passField.text.toString() , this , progressbar)
             else{
                 progressbar.visibility = View.GONE
