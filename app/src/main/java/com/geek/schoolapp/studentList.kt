@@ -4,35 +4,29 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.geek.schoolapp.databinding.StudentListRcvBinding
-import com.geek.schoolapp.retrofitHelper.retroHelper_StudentList
-import com.geek.schoolapp.service.studentListApi
-import com.geek.schoolapp.service.studentService
 import com.geek.schoolapp.viewModel.studentViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.geek.schoolapp.viewModel.studentViewModelFactory
 
 class studentList : AppCompatActivity() {
 
     lateinit var binding : StudentListRcvBinding
     lateinit var viewModel: studentViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.student_list_rcv)
-        val selectedClass = intent.getStringExtra("class")
+        val selectedClass = intent.getIntExtra("class",0)
+        val repo = (application as studentApplication).studentRepo
+        viewModel = ViewModelProvider(this,studentViewModelFactory(repo,selectedClass)).get(studentViewModel::class.java)
+        Log.e("TAG", "onCreate: $selectedClass", )
+        viewModel.students.observe(this, Observer {
+            Log.e("Student-List", "onCreate: $it")
+            Log.e("TAG", "onCreate: ${it.size}", )
+        })
 
-
-
-        val service = studentService()
-        service.getStudentList(selectedClass)
-
-        val api = retroHelper_StudentList().getInstance().create(studentListApi::class.java)
-        GlobalScope.launch {
-            val res = selectedClass?.let { api.getStudentList(it) }
-
-            if(res!=null){
-                Log.e("TAG", "onCreate: ${res.body()}", )
-            }
-        }
     }
 }
