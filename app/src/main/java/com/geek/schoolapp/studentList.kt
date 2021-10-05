@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.geek.schoolapp.adapter.studentList_Adapter
 import com.geek.schoolapp.databinding.StudentListRcvBinding
 import com.geek.schoolapp.viewModel.studentViewModel
 import com.geek.schoolapp.viewModel.studentViewModelFactory
@@ -14,7 +15,7 @@ class studentList : AppCompatActivity() {
 
     lateinit var binding : StudentListRcvBinding
     lateinit var viewModel: studentViewModel
-
+    lateinit var list_adapter : studentList_Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,10 @@ class studentList : AppCompatActivity() {
         Log.e("TAG", "onCreate: $selectedClass", )
         viewModel.students.observe(this, Observer {
             Log.e("Student-List", "onCreate: $it")
-            Log.e("TAG", "onCreate: ${it.size}", )
+            list_adapter = studentList_Adapter()
+            binding.rcvStud.adapter = list_adapter
+
+            list_adapter.submitList(it)
         })
 
     }
