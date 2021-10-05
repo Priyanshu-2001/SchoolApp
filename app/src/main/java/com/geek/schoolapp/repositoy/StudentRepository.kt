@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.geek.schoolapp.dataModel.studentX
+import com.geek.schoolapp.dataModel.studentItem
 import com.geek.schoolapp.db.studentDatabase
 import com.geek.schoolapp.service.studentListApi
 import com.geek.schoolapp.utils.NetworkUtils
@@ -14,9 +14,9 @@ class StudentRepository(
     private val studentDatabase: studentDatabase,
     private val applicationContext: Context
 ) {
-    private val studentLiveData = MutableLiveData<studentX>()
+    private val studentLiveData = MutableLiveData<List<studentItem>>()
 
-    val list : LiveData<studentX>
+    val list : LiveData<List<studentItem>>
         get() = studentLiveData
 
     suspend fun getStudents(standard : Int){
@@ -30,12 +30,13 @@ class StudentRepository(
             }
         }else{
             val student = studentDatabase.studentDao().getStudent(standard)
-            lateinit var x : studentX
-            student.forEach{
-                x.add(it)
-                Log.e("db data ", "getStudents: $it" )
-            }
-            studentLiveData.postValue(x)
+//            lateinit var x : ArrayList<studentItem>
+//            student.forEach{
+//                x.add(it)
+//                Log.e("db data ", "getStudents: $it" )
+//            }
+            Log.e("offline db ", "getStudents: $student", )
+            studentLiveData.postValue(student)
         }
 
     }

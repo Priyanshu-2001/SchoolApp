@@ -7,8 +7,9 @@ import androidx.room.PrimaryKey
 data class studentItem(
     val father_name: String,
     val is_staff: Boolean,
-    val name: String,
     @PrimaryKey
+    val name: String,
+
     val registeration_id: String,
     val roll_number: Int,
     val standard: Int,

@@ -2,6 +2,7 @@ package com.geek.schoolapp.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.geek.schoolapp.dataModel.studentItem
 import com.geek.schoolapp.dataModel.studentX
 import com.geek.schoolapp.repositoy.StudentRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ class studentViewModel(val repository: StudentRepository , val standard : Int) :
             repository.getStudents(standard)
         }
     }
-    val students : LiveData<studentX>
+    val students : LiveData<List<studentItem>>
         get() = repository.list
 
 }
