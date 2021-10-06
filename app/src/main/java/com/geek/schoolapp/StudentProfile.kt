@@ -44,11 +44,12 @@ class StudentProfile : AppCompatActivity() {
         binding.classSpinner.setSelection(standard as Int)
         disableAll()
 
-        val studentData = standard?.let {
-            StudentData(name as String, rollNo as Int,
-                it, regID as String, father as String
-            )
-        }
+        val studentData = StudentData(name as String,
+            rollNo.toString(),
+            standard,
+            regID as String,
+            father as String
+        )
         binding.viewmodel = studentData
 
         if(binding.btnSave.text=="Edit Details") {
@@ -91,7 +92,7 @@ class StudentProfile : AppCompatActivity() {
             if (classSelected != 0) {
                 val data = StudentData(
                     binding.nameField.text.toString(),
-                    Integer.valueOf(binding.rollfield.text.toString()),
+                    binding.rollfield.text.toString(),
                     classSelected,
                     binding.regField.text.toString(),
                     binding.fnameField.text.toString()

@@ -17,7 +17,7 @@ class addStudentService() {
         val requestQueue = Volley.newRequestQueue(context)
         val obj = JSONObject()
         val standard: Int = data.standard as Int
-        val roll: Int = data.rollNO
+        val roll: Int = data.rollNO as Int
         obj.put("username", data.userName)
         obj.put("password", data.passWord)
         obj.put("registeration_id", data.registrationNo)

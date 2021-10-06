@@ -71,7 +71,7 @@
                             android:background="@drawable/textfield_email"
                             android:hint="Roll No."
                             android:inputType="text"
-                            android:text="@{Integer.toString(viewmodel.rollNO)}"
+                            android:text="@{viewmodel.rollNO}"
                             android:padding="10dp"
                             android:singleLine="true"
                             android:textColor="#555555"
