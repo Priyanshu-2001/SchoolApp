@@ -1,8 +1,10 @@
 <resources>
 
     <string name="app_name">SchoolApp</string>
+    <string name="saveChangesBtn">Save Changes</string>
+    <string name="editBtn">Edit Details</string>
 
-<string-array name="Class">
+    <string-array name="Class">
     <item>Select Class</item>
     <item>1st Class</item>
     <item>2nd Class</item>

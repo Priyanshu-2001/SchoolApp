@@ -7,12 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.geek.schoolapp.dataModel.StudentData
 import com.geek.schoolapp.databinding.AddStudentBinding
+import com.geek.schoolapp.service.Delete_Edit_Service
 import com.geek.schoolapp.service.addStudentService
 
 class StudentProfile : AppCompatActivity() {
     lateinit var binding: AddStudentBinding
     lateinit var whichText: String
-
+    lateinit var edit_delte_Service: Delete_Edit_Service
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.add_student)
@@ -26,6 +27,7 @@ class StudentProfile : AppCompatActivity() {
         }
         if (whichText == "View Student") {
             viewStudentConfig()
+            edit_delte_Service = Delete_Edit_Service()
         }
     }
 
@@ -44,7 +46,8 @@ class StudentProfile : AppCompatActivity() {
         binding.classSpinner.setSelection(standard as Int)
         disableAll()
 
-        val studentData = StudentData(name as String,
+        val studentData = StudentData(
+            name as String,
             rollNo.toString(),
             standard,
             regID as String,
@@ -52,30 +55,35 @@ class StudentProfile : AppCompatActivity() {
         )
         binding.viewmodel = studentData
 
-        if(binding.btnSave.text=="Edit Details") {
-            binding.btnSave.setOnClickListener {
-                binding.btnSave.text = "Save Changes"
-                enableAll()
-                binding.deleteBtn.visibility = View.GONE
-            }
-        }else{
-            binding.deleteBtn.visibility = View.VISIBLE
-            saveChanges()
+        binding.btnSave.setOnClickListener {
+
+            if(binding.btnSave.text == getString(R.string.saveChangesBtn)) {
+                binding.btnSave.text = getString(R.string.editBtn)
+                binding.deleteBtn.visibility = View.VISIBLE
+                disableAll()
+                saveChanges()
+            }else{
+            binding.btnSave.text = getString(R.string.saveChangesBtn)
+            enableAll()
+            binding.deleteBtn.visibility = View.GONE
+        }
         }
     }
 
     private fun saveChanges() {
         Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show()
         binding.btnSave.text = "Edit Details"
+        edit_delte_Service.edit_Student()
     }
 
-    private fun disableAll(){
+    private fun disableAll() {
         binding.nameField.isEnabled = false
         binding.rollfield.isEnabled = false
         binding.regField.isEnabled = false
         binding.fnameField.isEnabled = false
     }
-    private fun enableAll(){
+
+    private fun enableAll() {
         binding.nameField.isEnabled = true
         binding.rollfield.isEnabled = true
         binding.regField.isEnabled = true
@@ -101,8 +109,12 @@ class StudentProfile : AppCompatActivity() {
                 data.userName = binding.username.text.toString()
 
                 service.addStudent(data, this)
-            }else{
-                Toast.makeText(it.context, "Hey You Forgot to Select the class ", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    it.context,
+                    "Hey You Forgot to Select the class ",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
