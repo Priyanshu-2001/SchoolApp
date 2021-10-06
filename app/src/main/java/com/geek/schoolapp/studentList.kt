@@ -25,6 +25,12 @@ class studentList : AppCompatActivity() {
         val repo = (application as studentApplication).studentRepo
         viewModel = ViewModelProvider(this,studentViewModelFactory(repo,selectedClass)).get(studentViewModel::class.java)
         Log.e("TAG", "onCreate: $selectedClass", )
+
+        //back button
+        binding.backButton.setOnClickListener{
+            finish()
+        }
+
         viewModel.students.observe(this, Observer {
             Log.e("Student-List", "onCreate: $it")
             list_adapter = studentList_Adapter()
