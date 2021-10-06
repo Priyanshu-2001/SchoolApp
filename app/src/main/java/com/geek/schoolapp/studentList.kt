@@ -2,6 +2,7 @@ package com.geek.schoolapp
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -28,7 +29,6 @@ class studentList : AppCompatActivity() {
             Log.e("Student-List", "onCreate: $it")
             list_adapter = studentList_Adapter()
             binding.rcvStud.adapter = list_adapter
-
             list_adapter.submitList(it)
         })
 
