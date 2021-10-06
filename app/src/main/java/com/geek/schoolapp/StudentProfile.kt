@@ -32,14 +32,18 @@ class StudentProfile : AppCompatActivity() {
     private fun viewStudentConfig() {
         binding.tvTitle.text = "Student"
         binding.btnSave.text = "Edit Details"
+        binding.deleteBtn.visibility = View.VISIBLE
+
         val bundle = intent.getBundleExtra("bund")
         val regID = bundle?.get("regId")
         val father = bundle?.get("fatherName")
         val name = bundle?.get("name")
         val rollNo = bundle?.get("rollNo")
         val standard = bundle?.get("standard")
+
         binding.classSpinner.setSelection(standard as Int)
         disableAll()
+
         val studentData = standard?.let {
             StudentData(name as String, rollNo as Int,
                 it, regID as String, father as String
@@ -51,8 +55,10 @@ class StudentProfile : AppCompatActivity() {
             binding.btnSave.setOnClickListener {
                 binding.btnSave.text = "Save Changes"
                 enableAll()
+                binding.deleteBtn.visibility = View.GONE
             }
         }else{
+            binding.deleteBtn.visibility = View.VISIBLE
             saveChanges()
         }
     }
