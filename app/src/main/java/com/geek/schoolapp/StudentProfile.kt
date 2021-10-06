@@ -33,6 +33,10 @@ class StudentProfile : AppCompatActivity() {
             edit_delte_Service = Delete_Edit_Service()
         }
 
+        if(whichText=="Student"){
+            studentView()
+        }
+
         //back button
         binding.backButton.setOnClickListener{
             hideKeyboard(it)
@@ -44,6 +48,29 @@ class StudentProfile : AppCompatActivity() {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
+    private fun studentView() {
+        binding.btnSave.visibility = View.GONE
+
+        val bundle = intent.getBundleExtra("bund")
+        val regID = bundle?.get("regId")
+        val father = bundle?.get("fatherName")
+        val name = bundle?.get("name")
+        val rollNo = bundle?.get("rollNo")
+        val standard = bundle?.get("standard")
+
+        val studentData = StudentData(
+            name.toString(),
+            rollNo.toString(),
+              standard!!,
+            regID.toString(),
+            father.toString()
+        )
+        binding.viewmodel = studentData
+
+
+    }
+
 
     private fun viewStudentConfig() {
         binding.tvTitle.text = "Student"
