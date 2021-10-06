@@ -29,7 +29,13 @@ class StudentProfile : AppCompatActivity() {
             viewStudentConfig()
             edit_delte_Service = Delete_Edit_Service()
         }
+
+        //back button
+        binding.backButton.setOnClickListener{
+            finish()
+        }
     }
+
 
     private fun viewStudentConfig() {
         binding.tvTitle.text = "Student"
