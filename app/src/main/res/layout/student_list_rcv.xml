@@ -85,7 +85,7 @@
             android:background="@drawable/progressbar_bg"
             android:elevation="10dp"
             android:indeterminateTint="#FF0000"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/rcv_stud"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
