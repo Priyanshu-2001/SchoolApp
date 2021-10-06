@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewmodel"
+            type="com.geek.schoolapp.dataModel.StudentData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,12 +44,10 @@
                         android:id="@+id/tv_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
                         android:text="Add Student"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/class_spinner"
-                        app:layout_constraintEnd_toStartOf="@+id/class_spinner"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -71,6 +71,7 @@
                             android:background="@drawable/textfield_email"
                             android:hint="Roll No."
                             android:inputType="text"
+                            android:text="@{Integer.toString(viewmodel.rollNO)}"
                             android:padding="10dp"
                             android:singleLine="true"
                             android:textColor="#555555"
@@ -99,6 +100,7 @@
                             android:layout_height="50dp"
                             android:background="@drawable/textfield_email"
                             android:inputType="text"
+                            android:text="@{viewmodel.registrationNo}"
                             android:padding="10dp"
                             android:singleLine="true"
                             android:textColor="#555555"
@@ -126,6 +128,7 @@
                             android:layout_height="50dp"
                             android:background="@drawable/textfield_email"
                             android:hint="Name"
+                            android:text="@{viewmodel.name}"
                             android:inputType="text"
                             android:padding="10dp"
                             android:singleLine="true"
@@ -154,6 +157,7 @@
                             android:layout_height="50dp"
                             android:background="@drawable/textfield_email"
                             android:hint="Father's Name"
+                            android:text="@{viewmodel.fatherName}"
                             android:inputType="text"
                             android:padding="10dp"
                             android:singleLine="true"
@@ -227,7 +231,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:entries="@array/Class"
-                        android:minHeight="48dp"
                         android:padding="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -248,6 +251,17 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/password_box" />
+
+                    <ImageButton
+                        android:id="@+id/deleteBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/delete_btn"
+                        android:layout_marginRight="5dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/btn_save"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/btn_save" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>

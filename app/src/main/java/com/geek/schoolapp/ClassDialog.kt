@@ -30,9 +30,7 @@ class ClassDialog : AppCompatActivity(){
         }.show()
 
         dialogBinding?.btnOk?.setOnClickListener {
-            val classList = context.resources.getStringArray(R.array.Class)
             if(dialogBinding.classSpinner.selectedItemPosition!=0){
-//                val selectedClass = classList[dialogBinding.classSpinner.selectedItemPosition]
                 val selectedClass = dialogBinding.classSpinner.selectedItemPosition
                 val i = Intent(context,studentList::class.java)
                 i.putExtra("class", selectedClass.toInt())

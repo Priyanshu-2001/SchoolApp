@@ -7,13 +7,13 @@ import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.geek.schoolapp.dataModel.studentData
+import com.geek.schoolapp.dataModel.StudentData
 import org.json.JSONObject
 import java.util.*
 
 class addStudentService() {
 
-    fun addStudent(data: studentData, context: Context) {
+    fun addStudent(data: StudentData, context: Context) {
         val requestQueue = Volley.newRequestQueue(context)
         val obj = JSONObject()
         val standard: Int = data.standard as Int

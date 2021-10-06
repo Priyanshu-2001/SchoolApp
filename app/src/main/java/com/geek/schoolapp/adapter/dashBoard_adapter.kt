@@ -27,7 +27,7 @@ class dashBoard_adapter(val data : List<String> , val imageData : List<Int>) : R
                 val intent = Intent(it.context,StudentProfile::class.java)
                 intent.putExtra("tag" , txtView.text)
                 Log.e("DashBoard_Adapter", ": ${txtView.text}" )
-                if(txtView.text == "View Student" || txtView.text == "Delete Student" || txtView.text == "Edit Student")
+                if(txtView.text == "View Student")
                     ClassDialog().showCustomDialog(it.context)
                 else
                     it.context.startActivity(intent)

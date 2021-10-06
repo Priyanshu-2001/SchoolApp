@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.geek.schoolapp.dataModel.studentData
+import com.geek.schoolapp.dataModel.StudentData
 import com.geek.schoolapp.databinding.AddStudentBinding
 import com.geek.schoolapp.service.addStudentService
 
@@ -24,18 +24,66 @@ class StudentProfile : AppCompatActivity() {
         if (whichText == "Add Student") {
             addStudentConfig()
         }
+        if (whichText == "View Student") {
+            viewStudentConfig()
+        }
+    }
+
+    private fun viewStudentConfig() {
+        binding.tvTitle.text = "Student"
+        binding.btnSave.text = "Edit Details"
+        val bundle = intent.getBundleExtra("bund")
+        val regID = bundle?.get("regId")
+        val father = bundle?.get("fatherName")
+        val name = bundle?.get("name")
+        val rollNo = bundle?.get("rollNo")
+        val standard = bundle?.get("standard")
+        binding.classSpinner.setSelection(standard as Int)
+        disableAll()
+        val studentData = standard?.let {
+            StudentData(name as String, rollNo as Int,
+                it, regID as String, father as String
+            )
+        }
+        binding.viewmodel = studentData
+
+        if(binding.btnSave.text=="Edit Details") {
+            binding.btnSave.setOnClickListener {
+                binding.btnSave.text = "Save Changes"
+                enableAll()
+            }
+        }else{
+            saveChanges()
+        }
+    }
+
+    private fun saveChanges() {
+        Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show()
+        binding.btnSave.text = "Edit Details"
+    }
+
+    private fun disableAll(){
+        binding.nameField.isEnabled = false
+        binding.rollfield.isEnabled = false
+        binding.regField.isEnabled = false
+        binding.fnameField.isEnabled = false
+    }
+    private fun enableAll(){
+        binding.nameField.isEnabled = true
+        binding.rollfield.isEnabled = true
+        binding.regField.isEnabled = true
+        binding.fnameField.isEnabled = true
     }
 
     private fun addStudentConfig() {
         binding.userNameBox.visibility = View.VISIBLE
         binding.passwordBox.visibility = View.VISIBLE
-
         val service = addStudentService()
 
         binding.btnSave.setOnClickListener {
             val classSelected = binding.classSpinner.selectedItemPosition
             if (classSelected != 0) {
-                val data = studentData(
+                val data = StudentData(
                     binding.nameField.text.toString(),
                     Integer.valueOf(binding.rollfield.text.toString()),
                     classSelected,
