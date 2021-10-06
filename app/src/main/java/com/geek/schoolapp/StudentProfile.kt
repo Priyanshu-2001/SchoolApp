@@ -1,7 +1,10 @@
 package com.geek.schoolapp
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -32,10 +35,15 @@ class StudentProfile : AppCompatActivity() {
 
         //back button
         binding.backButton.setOnClickListener{
+            hideKeyboard(it)
             finish()
         }
-    }
 
+    }
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 
     private fun viewStudentConfig() {
         binding.tvTitle.text = "Student"
