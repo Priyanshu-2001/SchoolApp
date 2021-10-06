@@ -33,40 +33,43 @@ class StudentProfile : AppCompatActivity() {
             edit_delte_Service = Delete_Edit_Service()
         }
 
-        if(whichText=="Student"){
+        if (whichText == "Student") {
             studentView()
         }
 
         //back button
-        binding.backButton.setOnClickListener{
+        binding.backButton.setOnClickListener {
             hideKeyboard(it)
             finish()
         }
 
     }
+
     fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun studentView() {
         binding.btnSave.visibility = View.GONE
+        val bundle = intent.getBundleExtra("bundle")
+        if (bundle != null) {
+            val regID = bundle?.get("regId")
+            val father = bundle?.get("fatherName")
+            val name = bundle?.get("name")
+            val rollNo = bundle?.get("rollNo")
+            val standard = bundle?.get("standard")
 
-        val bundle = intent.getBundleExtra("bund")
-        val regID = bundle?.get("regId")
-        val father = bundle?.get("fatherName")
-        val name = bundle?.get("name")
-        val rollNo = bundle?.get("rollNo")
-        val standard = bundle?.get("standard")
-
-        val studentData = StudentData(
-            name.toString(),
-            rollNo.toString(),
-              standard!!,
-            regID.toString(),
-            father.toString()
-        )
-        binding.viewmodel = studentData
+            val studentData = StudentData(
+                name.toString(),
+                rollNo.toString(),
+                standard!!,
+                regID.toString(),
+                father.toString()
+            )
+            binding.viewmodel = studentData
+        }
 
 
     }
@@ -102,16 +105,16 @@ class StudentProfile : AppCompatActivity() {
 
         binding.btnSave.setOnClickListener {
 
-            if(binding.btnSave.text == getString(R.string.saveChangesBtn)) {
+            if (binding.btnSave.text == getString(R.string.saveChangesBtn)) {
                 binding.btnSave.text = getString(R.string.editBtn)
                 binding.deleteBtn.visibility = View.VISIBLE
                 disableAll()
                 saveChanges()
-            }else{
-            binding.btnSave.text = getString(R.string.saveChangesBtn)
-            enableAll()
-            binding.deleteBtn.visibility = View.GONE
-        }
+            } else {
+                binding.btnSave.text = getString(R.string.saveChangesBtn)
+                enableAll()
+                binding.deleteBtn.visibility = View.GONE
+            }
         }
     }
 
