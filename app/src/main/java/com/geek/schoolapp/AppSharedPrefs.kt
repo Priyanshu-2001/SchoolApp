@@ -14,4 +14,10 @@ class AppSharedPrefs : AppCompatActivity() {
             apply()
         }
     }
+    fun deletePrefs(context: Context){
+        val sharedprefs = context.getSharedPreferences("loginPrefs", MODE_PRIVATE)
+        val editor = sharedprefs.edit()
+        editor.clear()
+        editor.apply()
+    }
 }

@@ -1,12 +1,11 @@
 package com.geek.schoolapp
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.geek.schoolapp.adapter.dashBoard_adapter
 import com.geek.schoolapp.databinding.ActivityAdminDashboardBinding
+
 
 class admin_dashboard : AppCompatActivity() {
 
@@ -23,6 +22,7 @@ class admin_dashboard : AppCompatActivity() {
         binding.rcv.adapter = adapter
 
         binding.logout.setOnClickListener{
+            AppSharedPrefs().deletePrefs(applicationContext)
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
             finishAffinity()

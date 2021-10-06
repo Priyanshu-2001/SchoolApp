@@ -1,10 +1,13 @@
 package com.geek.schoolapp
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.geek.schoolapp.databinding.ActivityMainBinding
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
             progressbar.visibility = View.VISIBLE
+            hideKeyboard(it)
            if ((binding.userName.text.toString() != "") && (binding.passField.text.toString() != "") )
             service.login(binding.userName.text.toString() , binding.passField.text.toString() , this , progressbar)
             else{
@@ -34,5 +38,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Fields are Empty !", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
