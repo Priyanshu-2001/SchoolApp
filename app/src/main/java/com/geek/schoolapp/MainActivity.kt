@@ -23,7 +23,12 @@ class MainActivity : AppCompatActivity() {
         val sharedPrefs = getSharedPreferences("loginPrefs", MODE_PRIVATE)
 
         if(sharedPrefs.contains("username") && sharedPrefs.contains("pass")){
-            val intent = Intent(this, admin_dashboard::class.java)
+            lateinit var intent : Intent
+            if(sharedPrefs.getBoolean("isStaff",false)) {
+                intent = Intent(this, admin_dashboard::class.java)
+            }else{
+                intent = Intent(this,StudentProfile::class.java)
+            }
             startActivity(intent)
             finishAffinity()
         }
@@ -31,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             progressbar.visibility = View.VISIBLE
             hideKeyboard(it)
-           if ((binding.userName.text.toString() != "") && (binding.passField.text.toString() != "") )
-            service.login(binding.userName.text.toString() , binding.passField.text.toString() , this , progressbar)
+            if ((binding.userName.text.toString() != "") && (binding.passField.text.toString() != "") )
+                service.login(binding.userName.text.toString() , binding.passField.text.toString() , this , progressbar)
             else{
                 progressbar.visibility = View.GONE
                 Toast.makeText(this, "Fields are Empty !", Toast.LENGTH_SHORT).show()

@@ -8,14 +8,16 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.geek.schoolapp.dataModel.StudentData
 import com.geek.schoolapp.databinding.AddStudentBinding
 import com.geek.schoolapp.service.Delete_Edit_Service
 import com.geek.schoolapp.service.addStudentService
+import com.geek.schoolapp.service.getStudentDetails
 
 class StudentProfile : AppCompatActivity() {
     lateinit var binding: AddStudentBinding
-    lateinit var whichText: String
+    var whichText: String = "-1"
     lateinit var edit_delte_Service: Delete_Edit_Service
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +34,9 @@ class StudentProfile : AppCompatActivity() {
             viewStudentConfig()
             edit_delte_Service = Delete_Edit_Service()
         }
+        val pref = getSharedPreferences("loginPrefs", MODE_PRIVATE)
 
-        if (whichText == "Student") {
+        if (whichText == "Student"|| !pref.getBoolean("isStaff",false)) {
             studentView()
         }
 
@@ -52,6 +55,7 @@ class StudentProfile : AppCompatActivity() {
     }
 
     private fun studentView() {
+        binding.backButton.visibility = View.GONE
         binding.btnSave.visibility = View.GONE
         val bundle = intent.getBundleExtra("bundle")
         if (bundle != null) {
@@ -61,17 +65,14 @@ class StudentProfile : AppCompatActivity() {
             val rollNo = bundle?.get("rollNo")
             val standard = bundle?.get("standard")
 
-            val studentData = StudentData(
-                name.toString(),
-                rollNo.toString(),
-                standard!!,
-                regID.toString(),
-                father.toString()
-            )
-            binding.viewmodel = studentData
         }
+        disableAll()
+        val service = getStudentDetails().getdetails(this)
 
-
+        service.observe(this, Observer {
+            binding.viewmodel = it
+            binding.classSpinner.setSelection(Integer.valueOf(it.standard.toString()))
+        })
     }
 
 
@@ -129,6 +130,7 @@ class StudentProfile : AppCompatActivity() {
         binding.rollfield.isEnabled = false
         binding.regField.isEnabled = false
         binding.fnameField.isEnabled = false
+        binding.classSpinner.isEnabled = false
     }
 
     private fun enableAll() {
