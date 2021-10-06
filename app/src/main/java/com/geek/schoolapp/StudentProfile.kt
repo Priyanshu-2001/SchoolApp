@@ -52,6 +52,10 @@ class StudentProfile : AppCompatActivity() {
         binding.classSpinner.setSelection(standard as Int)
         disableAll()
 
+        binding.deleteBtn.setOnClickListener {
+            edit_delte_Service.delete_Student()
+        }
+
         val studentData = StudentData(
             name as String,
             rollNo.toString(),
