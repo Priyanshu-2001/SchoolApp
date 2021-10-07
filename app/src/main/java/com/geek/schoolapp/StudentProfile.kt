@@ -120,9 +120,18 @@ class StudentProfile : AppCompatActivity() {
     }
 
     private fun saveChanges() {
-        Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show()
         binding.btnSave.text = "Edit Details"
-        edit_delte_Service.edit_Student()
+        val classSelected = binding.classSpinner.selectedItemPosition
+        val bundle = intent.getBundleExtra("bund")
+        val regID = bundle?.get("regId")
+        val data = StudentData(
+            binding.nameField.text.toString(),
+            binding.rollfield.text.toString(),
+            classSelected,
+            binding.regField.text.toString(),
+            binding.fnameField.text.toString()
+        )
+        edit_delte_Service.edit_Student(data,this,regID)
     }
 
     private fun disableAll() {
