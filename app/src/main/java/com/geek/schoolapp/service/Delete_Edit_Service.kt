@@ -1,7 +1,5 @@
 package com.geek.schoolapp.service
 
-import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,14 +11,34 @@ import com.geek.schoolapp.dataModel.StudentData
 import org.json.JSONObject
 
 class Delete_Edit_Service : AppCompatActivity(){
-    fun delete_Student(){
-
+    fun delete_Student( context: StudentProfile, regID: Any?) {
+        val requestQueue = Volley.newRequestQueue(context)
+        val obj = JSONObject()
+        val URL = "https://schoolapp1121.herokuapp.com/api/user/"+regID.toString()
+        Toast.makeText(context, URL, Toast.LENGTH_SHORT).show()
+        val request =  JsonObjectRequest(
+            Request.Method.DELETE, URL, obj,
+            {
+                Toast.makeText(
+                    context,
+                    "Deletion done !",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            {
+                Toast.makeText(
+                    context,
+                    "Deletion DONE !",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e("TAG", "addStudent: $it")
+            }
+        )
+        requestQueue.add(request)
     }
 
     fun edit_Student(data: StudentData, context: StudentProfile, regID: Any?) {
 
-        val i = Intent(context,StudentProfile::class.java)
-        val bund = Bundle()
         val requestQueue = Volley.newRequestQueue(context)
         val obj = JSONObject()
         val roll: Int = Integer.valueOf(data.rollNO)
@@ -39,8 +57,6 @@ class Delete_Edit_Service : AppCompatActivity(){
                     "Changes done !",
                     Toast.LENGTH_SHORT
                 ).show()
-                bund.putString("regId" ,data.registrationNo)
-                i.putExtra("bund",bund)
             },
             {
                 Toast.makeText(

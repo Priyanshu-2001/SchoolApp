@@ -92,7 +92,7 @@ class StudentProfile : AppCompatActivity() {
         disableAll()
 
         binding.deleteBtn.setOnClickListener {
-            edit_delte_Service.delete_Student()
+            edit_delte_Service.delete_Student(this,regID)
         }
 
         val studentData = StudentData(
