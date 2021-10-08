@@ -2,6 +2,7 @@ package com.geek.schoolapp
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -55,6 +56,7 @@ class StudentProfile : AppCompatActivity() {
     }
 
     private fun studentView() {
+        binding.logout.visibility = View.VISIBLE
         binding.backButton.visibility = View.GONE
         binding.btnSave.visibility = View.GONE
         val bundle = intent.getBundleExtra("bundle")
@@ -73,6 +75,13 @@ class StudentProfile : AppCompatActivity() {
             binding.viewmodel = it
             binding.classSpinner.setSelection(Integer.valueOf(it.standard.toString()))
         })
+
+        binding.logout.setOnClickListener{
+            AppSharedPrefs().deletePrefs(applicationContext)
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finishAffinity()
+        }
     }
 
 
@@ -80,7 +89,7 @@ class StudentProfile : AppCompatActivity() {
         binding.tvTitle.text = "Student"
         binding.btnSave.text = "Edit Details"
         binding.deleteBtn.visibility = View.VISIBLE
-
+        binding.logout.visibility = View.GONE
         val bundle = intent.getBundleExtra("bund")
         val regID = bundle?.get("regId")
         val father = bundle?.get("fatherName")
