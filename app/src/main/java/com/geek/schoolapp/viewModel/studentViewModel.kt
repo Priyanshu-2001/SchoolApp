@@ -21,7 +21,7 @@ class studentViewModel(private val repository: StudentRepository, val standard: 
 
 
     fun refreshlist() {
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             repository.getStudents(standard)
         }
     }
