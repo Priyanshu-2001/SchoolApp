@@ -123,6 +123,7 @@ class StudentProfile : AppCompatActivity() {
             } else {
                 binding.btnSave.text = getString(R.string.saveChangesBtn)
                 enableAll()
+                binding.regField.isEnabled = false
                 binding.deleteBtn.visibility = View.GONE
             }
         }

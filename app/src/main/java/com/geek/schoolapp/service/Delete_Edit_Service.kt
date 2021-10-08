@@ -15,10 +15,10 @@ class Delete_Edit_Service : AppCompatActivity(){
         val requestQueue = Volley.newRequestQueue(context)
         val obj = JSONObject()
         val URL = "https://schoolapp1121.herokuapp.com/api/user/"+regID.toString()
-        Toast.makeText(context, URL, Toast.LENGTH_SHORT).show()
         val request =  JsonObjectRequest(
             Request.Method.DELETE, URL, obj,
             {
+                context.finish()
                 Toast.makeText(
                     context,
                     "Deletion done !",
@@ -26,12 +26,13 @@ class Delete_Edit_Service : AppCompatActivity(){
                 ).show()
             },
             {
+                context.finish()
                 Toast.makeText(
                     context,
                     "Deletion DONE !",
                     Toast.LENGTH_SHORT
                 ).show()
-                Log.e("TAG", "addStudent: $it")
+                Log.e("TAG", "addStudent: ${it.localizedMessage}")
             }
         )
         requestQueue.add(request)
@@ -43,12 +44,13 @@ class Delete_Edit_Service : AppCompatActivity(){
         val obj = JSONObject()
         val roll: Int = Integer.valueOf(data.rollNO)
         obj.put("registeration_id", data.registrationNo)
+        Log.e("TAG", "edit_Student:regno. ${data.registrationNo}")
         obj.put("father_name", data.fatherName)
         obj.put("name", data.name)
         obj.put("roll_number", roll)
         Log.d("TAG", "edit_Student_data: " + obj)
         val URL = "https://schoolapp1121.herokuapp.com/api/user/"+regID.toString()
-        Toast.makeText(context, URL, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, URL, Toast.LENGTH_SHORT).show()
         val request =  JsonObjectRequest(
             Request.Method.PUT, URL, obj,
             {

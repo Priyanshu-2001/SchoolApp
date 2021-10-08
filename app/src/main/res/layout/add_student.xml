@@ -93,7 +93,7 @@
                             android:layout_height="50dp"
                             android:background="@drawable/textfield_email"
                             android:hint="Roll No."
-                            android:inputType="text"
+                            android:inputType="number"
                             android:padding="10dp"
                             android:singleLine="true"
                             android:text="@{viewmodel.rollNO}"

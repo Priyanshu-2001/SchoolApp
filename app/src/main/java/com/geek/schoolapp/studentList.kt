@@ -20,7 +20,8 @@ class studentList : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.student_list_rcv)
+        binding = DataBindingUtil.setContentView(this, R.layout.student_list_rcv)
+        binding.progressCircular.visibility = View.VISIBLE
         val selectedClass = intent.getIntExtra("class",0)
         val repo = (application as studentApplication).studentRepo
         viewModel = ViewModelProvider(this,studentViewModelFactory(repo,selectedClass)).get(studentViewModel::class.java)
@@ -36,7 +37,13 @@ class studentList : AppCompatActivity() {
             list_adapter = studentList_Adapter()
             binding.rcvStud.adapter = list_adapter
             list_adapter.submitList(it)
+            binding.progressCircular.visibility = View.GONE
         })
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshlist()
     }
 }
