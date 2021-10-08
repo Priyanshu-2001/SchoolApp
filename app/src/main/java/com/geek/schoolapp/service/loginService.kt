@@ -56,7 +56,7 @@ class loginService {
                 progressbar.visibility = View.GONE
                 Toast.makeText(
                     context,
-                    "Hey There, You are forgetting something !!\n Contact Your School/Admin For More Help",
+                    "These credentials no longer exists!!\n Contact Your School/Admin For More Help",
                     Toast.LENGTH_SHORT
                 ).show()
             }
